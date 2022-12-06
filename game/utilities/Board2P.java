@@ -1,22 +1,23 @@
 package game.utilities;
 
-import game.IBoard;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
-public class Board2P implements IBoard {
+public class Board2P implements game.IBoard {
 	private Square[][] board;
 	private ArrayList<LinkedList<Integer>> pathsPlayer1;
 	private ArrayList<LinkedList<Integer>> pathsPlayer2;
 	private int side;
 
+	private int winnerIndex;
+
 	public Board2P(int side){
-		this.side=side;
-		for(int x=0;x<side;x++) {
-    		for(int y=0;y<side;y++) {
-    			this.board[x][y]=new Square(0,0);
+		this.side = side;
+		this.board = new Square[this.side][this.side];
+		for(int x=0; x<side; x++) {
+    		for(int y=0; y<side; y++) {
+    			this.board[x][y]=new Square();
     		}
     	}
 		//Creation des deux ArrayList des deux joueurs 
@@ -38,7 +39,7 @@ public class Board2P implements IBoard {
 		//entrée ressemble a B-1
 		
 		//A FAIRE : verif entrée pour ne pas dépasser taille max du tableau !!
-		String[] separation =square.split("-");
+		String[] separation = square.split("-");
 		if(square.charAt(0)<'A' || 
 				square.charAt(0)> (char) (this.side-1 + (int) 'A') ||
 				square.charAt(2) < '0' ||
@@ -49,7 +50,7 @@ public class Board2P implements IBoard {
 		}
 		
 		//convertion du String en entier A=65 donc 65-65=0
-    	int x =Integer.parseInt(separation[0])-(int) 'A';
+    	int x = Integer.parseInt(separation[0])-(int) 'A';
     	//convertion du String numéro en int
     	int y = Integer.parseInt(separation[1]) -(int) '1';
     	
@@ -113,17 +114,18 @@ public class Board2P implements IBoard {
 	public boolean isWon() {
 		for (LinkedList<Integer> list : pathsPlayer1) {
 			//triage de la liste en ordre croissant
-			Arrays.sort(list);
+			Collections.sort(list);
 			//si le premier est à 0 et que le dernier correspond a la taille du tableau -1
 			//alors cela veut dire que son chemin est valable et qu'il a gagné
 			if(list.getFirst()==0 && list.getLast()==board.length-1) {
+				this.winnerIndex = 1;
 				return true;
 			}
 		}
 		for (LinkedList<Integer> list : pathsPlayer2) {
-			Collections.sort
-			sort(list);
+			Collections.sort(list);
 			if(list.getFirst()==0 && list.getLast()==board.length-1) {
+				this.winnerIndex = 2;
 				return true;
 			}
 		}
@@ -137,7 +139,7 @@ public class Board2P implements IBoard {
 	public void cleanBoard() {
 		for(int x=0;x<this.side;x++) {
     		for(int y=0;y<this.side;y++) {
-    			this.board[x][y]=new Square(0,0);
+    			this.board[x][y]=new Square();
     		}
     	}
 		pathsPlayer1.clear();
@@ -150,8 +152,8 @@ public class Board2P implements IBoard {
 	 * @return the index
 	 */
 	@Override
-	public int getWinner() {
-		return 0;
+	public Integer getWinner() {
+		return this.winnerIndex;
 	}
 	
 	public boolean verif(int x,int y,int indexPlayer) {
@@ -164,5 +166,24 @@ public class Board2P implements IBoard {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder(" ");
+		for (int i = 0; i <= this.side; ++i) {
+			if (i > 0) {
+				s.append('\n');
+				s.append(i);
+				for(int k = 0 ; k < i-1 ; ++k)
+					s.append(" ");
+			}
+			for (int j = 0; j < this.side; ++j) {
+				if (i == 0) s.append(" ").append((char) (j + (int) 'A'));
+				else s.append(" " + this.board[i-1][j].toString());
+			}
+		}
+		s.append('\n');
+		return s.toString();
 	}
 }

@@ -12,11 +12,11 @@ public class TestBoard2P {
 
     @Test
     public void test(){
-        test1();
+        //test1();
         test2();
-        test3();
-        test4();
-        test5();
+        //test3();
+        //test4();
+        //test5();
     }
 
     /**
@@ -42,10 +42,17 @@ public class TestBoard2P {
                 "2  . . .\n" +
                 "3   . . .\n", board.toString());
 
-        String str = "";
-        for (int i = 0 ; i < side ; ++i)
-            str += "00000001";
-        board = new Board2P(side, str);
+
+        board = new Board2P(8);
+        board.playAMove("H1",1);
+        board.playAMove("H2",1);
+        board.playAMove("H3",1);
+        board.playAMove("H4",1);
+        board.playAMove("H5",1);
+        board.playAMove("H6",1);
+        board.playAMove("H7",1);
+        board.playAMove("H8",1);
+
 
         assertEquals("  A B C D E F G H\n" +
                 "1 . . . . . . . 1\n" +
@@ -65,10 +72,11 @@ public class TestBoard2P {
      */
     @Test
     public void test2(){
-        for(char c : "ABCDEFGH".toCharArray())
-            for(char n : "12345678".toCharArray())
-                board.playAMove(String.valueOf(c+n), 1);
-
+        for(char c : "ABCDEFGH".toCharArray()) {
+            for(char n : "12345678".toCharArray()) {
+                board.playAMove(c+String.valueOf(n), 1);
+            }
+        }
         assertEquals("  A B C D E F G H\n" +
                 "1 1 1 1 1 1 1 1 1\n" +
                 "2  1 1 1 1 1 1 1 1\n" +
@@ -106,6 +114,7 @@ public class TestBoard2P {
                 "8        . . . . . . . .\n", board.toString());
     }
 
+
     /**
      * Test the function isWon and getWinner for straight path
      */
@@ -114,8 +123,8 @@ public class TestBoard2P {
         String str = "";
         for (int i = 0 ; i < side ; ++i)
             str += "00000001";
-        board = new Board2P(side, str);
-
+        board = new Board2P(side,str);
+        System.out.println(board);
         /*
           A B C D E F G H
         1 . . . . . . . 1

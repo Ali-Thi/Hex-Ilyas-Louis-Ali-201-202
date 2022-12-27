@@ -31,4 +31,11 @@ public class Square {
     public void setPathIndex(int pathIndex) {
         this.pathIndex = pathIndex;
     }
+
+    @Override
+    public String toString(){
+        if(this.value > 0)
+            return String.valueOf(this.value);
+        return ".";
+    }
 }

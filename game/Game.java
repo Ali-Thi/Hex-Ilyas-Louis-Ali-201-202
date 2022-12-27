@@ -59,4 +59,9 @@ public class Game implements IGame {
 			return ((IIA) players[indexIA]).generateMove();
 		throw new RuntimeException("Isn't an IA");
 	}
+
+	@Override
+	public String toString(){
+		return this.board.toString();
+	}
 }

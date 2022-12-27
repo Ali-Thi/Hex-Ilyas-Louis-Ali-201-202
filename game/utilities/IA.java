@@ -5,7 +5,7 @@ import game.IPlayer;
  	
 public class IA implements IIA, IPlayer {
     private static int sequence;
-    private int[][] board;
+    public int[][] board;
     private int number;
 
     public IA(int side){

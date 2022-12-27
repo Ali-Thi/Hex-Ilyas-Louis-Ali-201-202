@@ -44,7 +44,7 @@ public class TestGame {
         for (int i = 0 ; i < side ; ++i)
             str += "00000001";
 
-        IGame game = new Game(new Board2P(8, str),
+        IGame game = new Game(new Board2P(8,str),
                 new HPlayer("John"),
                 new HPlayer("Alex"));
 

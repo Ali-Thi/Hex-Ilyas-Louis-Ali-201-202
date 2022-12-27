@@ -4,7 +4,6 @@ import game.IPlayer;
 
 public class HPlayer implements IPlayer {
     private String name;
-
     public HPlayer(String name){
         this.name = name;
     }

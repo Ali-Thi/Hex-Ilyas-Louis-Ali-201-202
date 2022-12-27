@@ -29,19 +29,6 @@ public class Board2P implements game.IBoard {
 		pathsPlayer2=new ArrayList<>();
 	}
 
-
-	public Board2P(int side, String str) {
-		this(side);
-		String[] lines = cut(str);
-		for(int x=0; x<side; x++) {
-			for(int y=0; y<side; y++) {
-				this.board[x][y].setValue(lines[x].charAt(y)-'0'); // transforme la valeur entière d'un string en int
-			}
-		}
-		pathsPlayer1=new ArrayList<>();
-		pathsPlayer2=new ArrayList<>();
-	}
-
 	public boolean checkBorders(String square){
 		if(square.charAt(0)<'A' ||
 				square.charAt(0)> (char) (this.side-1 + (int) 'A') ||
@@ -49,6 +36,10 @@ public class Board2P implements game.IBoard {
 				square.charAt(1) > (char) (this.side + (int) '0')
 		) return false;
 		return true;
+	}
+
+	public ArrayList<LinkedList<Integer>> getJ2(){
+		return pathsPlayer2;
 	}
 
 
@@ -106,7 +97,7 @@ public class Board2P implements game.IBoard {
 							}
 						}
 					}
-				} catch (ArrayIndexOutOfBoundsException ignored) {}
+				} catch (RuntimeException ignored) {}
 			}
 
 			if (indexPath == -1) {
@@ -175,26 +166,6 @@ public class Board2P implements game.IBoard {
 		return this.winnerIndex;
 	}
 
-	/*
-	public boolean verif(int x,int y,int indexPlayer) {
-		if(board[x-1][y].getPathIndex()==indexPlayer ||
-				board[x+1][y].getPathIndex()==indexPlayer ||
-				board[x-1][y+1].getPathIndex()==indexPlayer ||
-			board[x][y+1].getPathIndex()==indexPlayer ||
-				board[x+1][y-1].getPathIndex()==indexPlayer ||
-				board[x][y-1].getPathIndex()==indexPlayer) {
-		return true;
-	}
-		return false;
-	}
-	*/
-	public String[] cut(String str) {
-		String[] lignes = new String[side];
-		for (int i = 0; i < side; ++i)
-			lignes[i] = str.substring(i * side,
-					(i + 1) * side);
-		return lignes;
-	}
 
 	/**
 	 * Return a string object representing the current object

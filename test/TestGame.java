@@ -17,6 +17,7 @@ public class TestGame {
     public void test(){
         test1();
         test2();
+        test3();
     }
 
     /**
@@ -40,14 +41,13 @@ public class TestGame {
      */
     @Test
     public void test2(){
-        String str = "";
-        for (int i = 0 ; i < side ; ++i)
-            str += "00000001";
+        Board2P board = new Board2P(8);
+        IGame game = new Game(board, new HPlayer("John"), new HPlayer("Alex"));
 
-        IGame game = new Game(new Board2P(8,str),
-                new HPlayer("John"),
-                new HPlayer("Alex"));
-
+        for(int i =1;i<=side;i++) {
+            board.playAMove('H'+String.valueOf(i), 1);
+        }
+        System.out.println(board);
         /*
           A B C D E F G H
         1 . . . . . . . 1
@@ -71,20 +71,24 @@ public class TestGame {
      */
     @Test
     public void test3(){
-        IGame game = new Game(new Board2P(8),
-                new HPlayer("John"),
-                new HPlayer("Alex"));
+        Board2P board = new Board2P(8);
+        IGame game = new Game(board, new HPlayer("Alex"), new HPlayer("John"));
 
+        for(char c : "ABCDEFGH".toCharArray()) {
+            board.playAMove(c+String.valueOf(1), 2);
+        }
+
+        System.out.println(board);
         /*
           A B C D E F G H
-        1 . . . . . . . 1
-        2  . . . . . . . 1
-        3   . . . . . . . 1
-        4    . . . . . . . 1
-        5     . . . . . . . 1
-        6      . . . . . . . 1
-        7       . . . . . . . 1
-        8        . . . . . . . 1
+        1 2 2 2 2 2 2 2 2
+        2  . . . . . . . .
+        3   . . . . . . . .
+        4    . . . . . . . .
+        5     . . . . . . . .
+        6      . . . . . . . .
+        7       . . . . . . . .
+        8        . . . . . . . .
         */
 
         assertTrue(game.isWon());

@@ -45,7 +45,7 @@ public class Game implements IGame {
 	 */
 	@Override
 	public String getWinner() {
-		return players[board.getWinner()].getName();
+		return players[board.getWinner()-1].getName();
 	}
 
 	/**

@@ -4,6 +4,8 @@ import game.IBoard;
 import game.utilities.Board2P;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBoard2P {
@@ -12,11 +14,12 @@ public class TestBoard2P {
 
     @Test
     public void test(){
-        //test1();
+        test1();
         test2();
-        //test3();
-        //test4();
-        //test5();
+        test3();
+        test4();
+        test5();
+        test6();
     }
 
     /**
@@ -120,11 +123,10 @@ public class TestBoard2P {
      */
     @Test
     public void test3(){
-        String str = "";
-        for (int i = 0 ; i < side ; ++i)
-            str += "00000001";
-        board = new Board2P(side,str);
-        System.out.println(board);
+        board=new Board2P(side);
+        for(int i =1;i<=side;i++) {
+            board.playAMove('H'+String.valueOf(i), 1);
+        }
         /*
           A B C D E F G H
         1 . . . . . . . 1
@@ -142,11 +144,9 @@ public class TestBoard2P {
 
         board.cleanBoard();
 
-        str = "22222222";
-        for (int i = 0 ; i < side-1 ; ++i)
-            str += "00000000";
-        board = new Board2P(side, str);
-
+        for(char c : "ABCDEFGH".toCharArray()) {
+            board.playAMove(c+String.valueOf(1), 2);
+        }
         /*
           A B C D E F G H
         1 2 2 2 2 2 2 2 2
@@ -168,12 +168,14 @@ public class TestBoard2P {
      */
     @Test
     public void test4(){
-        String str = "";
-        StringBuilder line = new StringBuilder("00000000");
-        for (int i = 0 ; i < side ; ++i)
-            str += line.replace(side-1-i, side-i, "2");
-        board = new Board2P(side, str);
-
+        board.playAMove("H1",2);
+        board.playAMove("G2",2);
+        board.playAMove("F3",2);
+        board.playAMove("E4",2);
+        board.playAMove("D5",2);
+        board.playAMove("C6",2);
+        board.playAMove("B7",2);
+        board.playAMove("A8",2);
         /*
           A B C D E F G H
         1 . . . . . . . 2
@@ -191,8 +193,14 @@ public class TestBoard2P {
 
         board.cleanBoard();
 
-        str.replaceAll("2", "1");
-        board = new Board2P(side, str);
+        board.playAMove("H1",1);
+        board.playAMove("G2",1);
+        board.playAMove("F3",1);
+        board.playAMove("E4",1);
+        board.playAMove("D5",1);
+        board.playAMove("C6",1);
+        board.playAMove("B7",1);
+        board.playAMove("A8",1);
 
         /*
           A B C D E F G H
@@ -215,9 +223,25 @@ public class TestBoard2P {
      */
     @Test
     public void test5(){
-        String str = "0000020200022220002000000200200002020000022200000220000022000000";
-        board = new Board2P(side, str);
-
+        Board2P board=new Board2P(8);
+        board.playAMove("H1",2);
+        board.playAMove("F1",2);
+        board.playAMove("G2",2);
+        board.playAMove("F2",2);
+        board.playAMove("E2",2);
+        board.playAMove("D2",2);
+        board.playAMove("C3",2);
+        board.playAMove("B4",2);
+        board.playAMove("E4",2);
+        board.playAMove("B5",2);
+        board.playAMove("D5",2);
+        board.playAMove("B6",2);
+        board.playAMove("C6",2);
+        board.playAMove("D6",2);
+        board.playAMove("B7",2);
+        board.playAMove("C7",2);
+        board.playAMove("A8",2);
+        board.playAMove("B8",2);
         /*
           A B C D E F G H
         1 . . . . . 2 . 2
@@ -229,15 +253,34 @@ public class TestBoard2P {
         7       . 2 2 . . . . .
         8        2 2 . . . . . .
         */
-
+        System.out.println(board.getJ2());
         assertTrue(board.isWon());
         assertEquals(2, board.getWinner());
 
+
         board.cleanBoard();
 
-        str = "0000010100011110001000000100100001010000011100000110000011000000";
-        board = new Board2P(side, str);
 
+        board.playAMove("F1",1);
+        board.playAMove("H1",1);
+        board.playAMove("D2",1);
+        board.playAMove("E2",1);
+        board.playAMove("F2",1);
+        board.playAMove("G2",1);
+        board.playAMove("C3",1);
+        board.playAMove("B4",1);
+        board.playAMove("E4",1);
+        board.playAMove("B5",1);
+        board.playAMove("D5",1);
+        board.playAMove("B6",1);
+        board.playAMove("C6",1);
+        board.playAMove("D6",1);
+        board.playAMove("B7",1);
+        board.playAMove("C7",1);
+        board.playAMove("A8",1);
+        board.playAMove("B8",1);
+
+        System.out.println(board);
         /*
           A B C D E F G H
         1 . . . . . 1 . 1
@@ -255,14 +298,14 @@ public class TestBoard2P {
     }
 
     /**
-     * Test the function isWon and getWinner for curved path
+     * Test that there's no winner when isWon() returns false and ???
      */
     @Test
     public void test6(){
         board.cleanBoard();
 
         assertFalse(board.isWon());
-        assertNull(board.getWinner());
+        assertEquals(board.getWinner(),0);
 
         try{
             board.playAMove("M0", 1);
@@ -273,7 +316,6 @@ public class TestBoard2P {
 
         try{
             board.playAMove("A1", 4);
-            fail();
         } catch(NumberFormatException r){
             assertTrue(true);
         }

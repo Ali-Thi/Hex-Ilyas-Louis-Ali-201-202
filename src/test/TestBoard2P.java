@@ -4,23 +4,12 @@ import game.IBoard;
 import game.utilities.Board2P;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBoard2P {
     private final int side = 8;
-    private IBoard board = new Board2P(side);
-
-    @Test
-    public void test(){
-        test1();
-        test2();
-        test3();
-        test4();
-        test5();
-        test6();
-    }
+    private final int nbPlayer = 2;
+    private IBoard board = new Board2P(side, nbPlayer);
 
     /**
      * test the initialization of a new instance of Board2P
@@ -37,7 +26,7 @@ public class TestBoard2P {
                 "7       . . . . . . . .\n" +
                 "8        . . . . . . . .\n", board.toString());
 
-        board = new Board2P(3);
+        board = new Board2P(3, nbPlayer);
 
 
         assertEquals("  A B C\n" +
@@ -46,7 +35,7 @@ public class TestBoard2P {
                 "3   . . .\n", board.toString());
 
 
-        board = new Board2P(8);
+        board = new Board2P(side, nbPlayer);
         board.playAMove("H1",1);
         board.playAMove("H2",1);
         board.playAMove("H3",1);
@@ -123,7 +112,7 @@ public class TestBoard2P {
      */
     @Test
     public void test3(){
-        board=new Board2P(side);
+        board=new Board2P(side, 2);
         for(int i =1;i<=side;i++) {
             board.playAMove('H'+String.valueOf(i), 1);
         }
@@ -139,6 +128,15 @@ public class TestBoard2P {
         8        . . . . . . . 1
         */
 
+        assertEquals("  A B C D E F G H\n" +
+                "1 . . . . . . . 1\n" +
+                "2  . . . . . . . 1\n" +
+                "3   . . . . . . . 1\n" +
+                "4    . . . . . . . 1\n" +
+                "5     . . . . . . . 1\n" +
+                "6      . . . . . . . 1\n" +
+                "7       . . . . . . . 1\n" +
+                "8        . . . . . . . 1\n", board.toString());
         assertTrue(board.isWon());
         assertEquals(1, board.getWinner());
 
@@ -223,13 +221,12 @@ public class TestBoard2P {
      */
     @Test
     public void test5(){
-        Board2P board=new Board2P(8);
+        Board2P board=new Board2P(side, nbPlayer);
         board.playAMove("H1",2);
         board.playAMove("F1",2);
         board.playAMove("G2",2);
         board.playAMove("F2",2);
         board.playAMove("E2",2);
-        board.playAMove("D2",2);
         board.playAMove("C3",2);
         board.playAMove("B4",2);
         board.playAMove("E4",2);
@@ -242,6 +239,7 @@ public class TestBoard2P {
         board.playAMove("C7",2);
         board.playAMove("A8",2);
         board.playAMove("B8",2);
+        board.playAMove("D2",2);
         /*
           A B C D E F G H
         1 . . . . . 2 . 2
@@ -253,7 +251,6 @@ public class TestBoard2P {
         7       . 2 2 . . . . .
         8        2 2 . . . . . .
         */
-        System.out.println(board.getJ2());
         assertTrue(board.isWon());
         assertEquals(2, board.getWinner());
 
@@ -310,13 +307,13 @@ public class TestBoard2P {
         try{
             board.playAMove("M0", 1);
             fail();
-        } catch(RuntimeException r){
+        } catch(IllegalArgumentException r){
             assertTrue(true);
         }
 
         try{
             board.playAMove("A1", 4);
-        } catch(NumberFormatException r){
+        } catch(IllegalArgumentException r){
             assertTrue(true);
         }
     }

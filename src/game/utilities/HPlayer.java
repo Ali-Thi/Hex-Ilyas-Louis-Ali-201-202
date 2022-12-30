@@ -9,8 +9,8 @@ public class HPlayer implements IPlayer {
     }
 
     /**
-     * Check if the instance is an IA
-     * @return true if it is, false otherwise
+     * Test si l'instance courante est une IA
+     * @return true si elle l'est, false sinon
      */
     @Override
     public boolean isIA() {
@@ -18,8 +18,8 @@ public class HPlayer implements IPlayer {
     }
 
     /**
-     * Return the name of the player
-     * @return the name
+     * Retourne le nom du joueur
+     * @return le nom
      */
     @Override
     public String getName() {

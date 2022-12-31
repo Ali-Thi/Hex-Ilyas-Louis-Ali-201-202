@@ -41,12 +41,15 @@ public class Board2P implements game.IBoard {
     public boolean playAMove(String square, int indexPlayer) {
         // check les bordures
         if (square.charAt(0) < 'A' ||
-                square.charAt(0) > (char) (this.side - 1 + (int) 'A') ||
-                square.charAt(1) <= '0' ||
-                square.charAt(1) > (char) (this.side + (int) '0')) {
+                square.charAt(0) > (char) (this.side - 1 + (int) 'A') ) {
             throw new IllegalArgumentException();
         }
         if (indexPlayer > nbPlayer || indexPlayer <= 0) {
+            throw new IllegalArgumentException();
+        }
+        try{
+            Integer.parseInt(square.substring(1));
+        } catch(NumberFormatException e){
             throw new IllegalArgumentException();
         }
 

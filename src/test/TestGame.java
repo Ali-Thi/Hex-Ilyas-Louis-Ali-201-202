@@ -100,7 +100,7 @@ public class TestGame {
         IGame game = new Game(board, new HPlayer("John"), new IA(side));
         game.playAMove("C3", 1);
         for(int i = 0 ; i < side*side-1 ; ++i){
-            game.makeIAPlay(2);
+            game.playAMove(game.makeIAPlay(2), 2);
         }
 
         assertTrue(game.isWon());

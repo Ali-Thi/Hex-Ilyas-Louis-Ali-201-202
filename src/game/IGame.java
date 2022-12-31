@@ -28,11 +28,13 @@ public interface IGame {
 	String getWinner();
 
 	/**
-	 * Fait jouer un coup par une IA
-	 * @param indexIA l'index de l'IA dans le tableau des joueurs (similaire à index Player pour les joueurs humain)
-	 * @throws RuntimeException lorsque l'IA a joué un coup non valide, preuve d'une erreur dans l'IA
-	 * @throws IllegalArgumentException lorsque l'indexIA ne concerne pas une IA, mais un joueur humain
-	 */
-	void makeIAPlay(int indexIA);
+     * Fait jouer un coup par une IA
+     *
+     * @param indexIA l'index de l'IA dans le tableau des joueurs (similaire à index Player pour les joueurs humain)
+     * @return la chaine représentant le coup
+     * @throws RuntimeException         lorsque l'IA a joué un coup non valide, preuve d'une erreur dans l'IA
+     * @throws IllegalArgumentException lorsque l'indexIA ne concerne pas une IA, mais un joueur humain
+     */
+	String makeIAPlay(int indexIA);
 	
 }

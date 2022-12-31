@@ -59,18 +59,18 @@ public class Game implements IGame {
 
 	/**
 	 * Fait jouer un coup par une IA
+	 *
 	 * @param indexIA l'index de l'IA dans le tableau des joueurs (similaire à index Player pour les joueurs humain)
-	 * @throws RuntimeException lorsque l'IA a joué un coup non valide, preuve d'une erreur dans l'IA
-	 * @throws IllegalArgumentException lorsque l'indexIA ne concerne pas une IA, mais un joueur humain
+	 * @return la chaine représentant le coup
+	 * @throws IllegalArgumentException       lorsque l'indexIA ne concerne pas une IA, mais un joueur humain
 	 * @throws ArrayIndexOutOfBoundsException lorsque l'indexIA dépasse les limites du tableau de joueurs
 	 */
 	@Override
-	public void makeIAPlay(int indexIA) {
+	public String makeIAPlay(int indexIA) {
 		if(indexIA <= 0 || indexIA > players.length)
 			throw new ArrayIndexOutOfBoundsException();
 		if(players[indexIA-1] instanceof IIA) {
-			if(!playAMove(((IIA) players[indexIA-1]).generateMove(), indexIA))
-				throw new RuntimeException("Problem with the AI.");
+			return ((IIA) players[indexIA-1]).generateMove();
 		}
 		else {
 			throw new IllegalArgumentException("Isn't an IA");

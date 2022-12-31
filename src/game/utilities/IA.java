@@ -33,25 +33,28 @@ public class IA implements IIA, IPlayer {
                 }
             }
         }
-        throw new RuntimeException("Board full");
+        throw new RuntimeException("Plateau plein.");
     }
 
     /**
      * Actualise la matrice de l'IA représentant le plateau
      * @param square la case joué
      * @param indexPlayer le joueur ayant joué
+     * @throws IllegalArgumentException indexPlayer or de la borne ou case invalide
      */
     @Override
     public boolean addMove(String square, int indexPlayer) {
-        if (square.charAt(0) < 'A' ||
-                square.charAt(0) > (char) (board.length - 1 + (int) 'A') ||
-                square.charAt(1) <= '0' ||
-                square.charAt(1) > (char) (board.length + (int) '0')) {
-            throw new NumberFormatException("Invalid square");
+        if (square.charAt(0) < 'A' || square.charAt(0) > (char) (this.board.length - 1 + (int) 'A') ) {
+            throw new IllegalArgumentException("Premier caractère en dehors des limites.");
+        }
+        try{
+            Integer.parseInt(square.substring(1));
+        } catch(NumberFormatException e){
+            throw new IllegalArgumentException("L'index de la case est en dehors des limites.");
         }
     	
     	int y = (int) square.charAt(0) - (int) 'A';
-        int x = (int) square.charAt(1) - (int) '1';
+        int x = Integer.parseInt(square.substring(1)) - 1;
     	if(board[x][y]==0) {
     		board[x][y]=indexPlayer;
     		return true;

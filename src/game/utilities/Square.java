@@ -2,9 +2,6 @@ package game.utilities;
 
 import java.util.Arrays;
 
-/**
- * Represent a square of the board
- */
 public class Square {
     public enum PossbileValue {Vide, Player1, Player2}; //valeurs possibles de la case
     private PossbileValue value; //valeur de la case

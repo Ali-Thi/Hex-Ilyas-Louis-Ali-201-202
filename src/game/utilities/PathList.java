@@ -80,6 +80,7 @@ public class PathList {
      * @param y1 la coordonnée sur l'axe des ordonnées de la case étant comprise dans un premier chemin
      * @param x2 la coordonnée sur l'axe des abscisses de la case étant comprise dans un second chemin
      * @param y2 la coordonnée sur l'axe des ordonnées de la case étant comprise dans un second chemin
+     * @throws RuntimeException la seconde case n'appartient à aucun chemin connu
      */
     public void mergePaths(int x1, int y1, int x2, int y2){
         int indexFirstPath = findPath(x1, y1);
@@ -98,6 +99,7 @@ public class PathList {
      * @param coordMax la valeur x ou y impliquant que la case est sur l'autre bord du plateau
      * @param axe permet de définir si l'on cherche un chemin via l'axe x ou y
      * @return true si un tel chemin existe, false sinon
+     * @throws IllegalArgumentException axe ne correspond pas à x ou y
      */
     public boolean isPathComplete(int coordMin, int coordMax, char axe){
         if(!(axe == 'x' || axe =='y'))

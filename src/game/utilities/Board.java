@@ -1,6 +1,6 @@
 package game.utilities;
 
-public class Board2P implements game.IBoard {
+public class Board implements game.IBoard {
     private final Square[][] board; //plateau
     private final PathList[] paths; //tableau des chemins, chaque element representant un joueur dans l'ordre de jeux
     private int side; //taille du tableau
@@ -9,11 +9,10 @@ public class Board2P implements game.IBoard {
 
     /**
      * Constructeur
-     *
      * @param side     taille du tableur (largeur ou hauteur)
      * @param nbPlayer nombre de joueurs
      */
-    public Board2P(int side, int nbPlayer) {
+    public Board(int side, int nbPlayer) {
         this.side = side;
         this.nbPlayer = nbPlayer;
         this.board = new Square[this.side][this.side];
@@ -42,21 +41,21 @@ public class Board2P implements game.IBoard {
         // check les bordures
         if (square.charAt(0) < 'A' ||
                 square.charAt(0) > (char) (this.side - 1 + (int) 'A') ) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Premier caractère en dehors des limites.");
         }
         if (indexPlayer > nbPlayer || indexPlayer <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("L'index du joueur est en dehors des limites.");
         }
         try{
             Integer.parseInt(square.substring(1));
         } catch(NumberFormatException e){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("L'index de la case est en dehors des limites.");
         }
 
         //conversion du String en entier A=65 donc 65-65=0
         int y = square.charAt(0) - 'A';
         //conversion du String numéro en int
-        int x = square.charAt(1) - '1';
+        int x = Integer.parseInt(square.substring(1)) - 1;
         if (board[x][y].getValue() == Square.PossbileValue.Vide) {
             this.board[x][y].setValue(indexPlayer);
 

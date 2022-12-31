@@ -1,18 +1,18 @@
 package test;
 
 import game.IBoard;
-import game.utilities.Board2P;
+import game.utilities.Board;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestBoard2P {
+public class TestBoard {
     private final int side = 8;
     private final int nbPlayer = 2;
-    private IBoard board = new Board2P(side, nbPlayer);
+    private IBoard board = new Board(side, nbPlayer);
 
     /**
-     * test the initialization of a new instance of Board2P
+     * test the initialization of a new instance of Board
      */
     @Test
     public void test1(){
@@ -26,7 +26,7 @@ public class TestBoard2P {
                 "7       . . . . . . . .\n" +
                 "8        . . . . . . . .\n", board.toString());
 
-        board = new Board2P(3, nbPlayer);
+        board = new Board(3, nbPlayer);
 
 
         assertEquals("  A B C\n" +
@@ -35,7 +35,7 @@ public class TestBoard2P {
                 "3   . . .\n", board.toString());
 
 
-        board = new Board2P(side, nbPlayer);
+        board = new Board(side, nbPlayer);
         board.playAMove("H1",1);
         board.playAMove("H2",1);
         board.playAMove("H3",1);
@@ -112,7 +112,7 @@ public class TestBoard2P {
      */
     @Test
     public void test3(){
-        board=new Board2P(side, 2);
+        board=new Board(side, 2);
         for(int i =1;i<=side;i++) {
             board.playAMove('H'+String.valueOf(i), 1);
         }
@@ -221,7 +221,7 @@ public class TestBoard2P {
      */
     @Test
     public void test5(){
-        Board2P board=new Board2P(side, nbPlayer);
+        Board board=new Board(side, nbPlayer);
         board.playAMove("H1",2);
         board.playAMove("F1",2);
         board.playAMove("G2",2);

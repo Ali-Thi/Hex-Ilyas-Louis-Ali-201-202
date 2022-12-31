@@ -6,8 +6,7 @@ public interface IBoard {
 	 * @param square      la coordonnée de la case au format {A-Z}{1-MAX_INT}
 	 * @param indexPlayer index du joueur qui a joué le coup
 	 * @return true si le coup a bien été enregistré, sinon false
-	 * @throws IllegalArgumentException indexPlayer or de la borne
-	 * @throws NumberFormatException    case invalide
+	 * @throws IllegalArgumentException indexPlayer or de la borne ou case invalide
 	 */
 	boolean playAMove(String square, int indexPlayer);
 

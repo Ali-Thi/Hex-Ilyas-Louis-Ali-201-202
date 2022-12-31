@@ -1,6 +1,6 @@
 package test;
 
-import game.utilities.Board2P;
+import game.utilities.Board;
 import game.utilities.IA;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ public class TestIA {
     private final int side = 8;
     private IA ia1 = new IA(side);
     private IA ia2 = new IA(side);
-    private Board2P board = new Board2P(side, 2);
+    private Board board = new Board(side, 2);
 
 
     /**

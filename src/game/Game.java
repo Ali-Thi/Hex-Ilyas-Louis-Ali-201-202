@@ -18,11 +18,11 @@ public class Game implements IGame {
 	 */
 	@Override
 	public boolean playAMove(String square, int indexPlayer) {
-		boolean coup = board.playAMove(square, indexPlayer);
+		boolean coup = board.playAMove(square.toUpperCase(), indexPlayer);
 		if(coup){
 			for (IPlayer player : players) {
 				if (player instanceof IIA)
-					((IIA) player).addMove(square, indexPlayer);
+					((IIA) player).addMove(square.toUpperCase(), indexPlayer);
 			}
 			return true;
 		}
@@ -59,21 +59,21 @@ public class Game implements IGame {
 
 	/**
 	 * Fait jouer un coup par une IA
-	 *
 	 * @param indexIA l'index de l'IA dans le tableau des joueurs (similaire à index Player pour les joueurs humain)
-	 * @return la chaine représentant le coup
-	 * @throws IllegalArgumentException       lorsque l'indexIA ne concerne pas une IA, mais un joueur humain
+	 * @throws RuntimeException lorsque l'IA a joué un coup non valide, preuve d'une erreur dans l'IA
+	 * @throws IllegalArgumentException lorsque l'indexIA ne concerne pas une IA, mais un joueur humain
 	 * @throws ArrayIndexOutOfBoundsException lorsque l'indexIA dépasse les limites du tableau de joueurs
 	 */
 	@Override
-	public String makeIAPlay(int indexIA) {
+	public void makeIAPlay(int indexIA) {
 		if(indexIA <= 0 || indexIA > players.length)
-			throw new ArrayIndexOutOfBoundsException();
+			throw new ArrayIndexOutOfBoundsException("L'index du joueur dépasse les bornes.");
 		if(players[indexIA-1] instanceof IIA) {
-			return ((IIA) players[indexIA-1]).generateMove();
+			if(!playAMove(((IIA) players[indexIA-1]).generateMove(), indexIA))
+				throw new RuntimeException("Erreur interne à l'IA.");
 		}
 		else {
-			throw new IllegalArgumentException("Isn't an IA");
+			throw new IllegalArgumentException("L'index ne correspond pas à une IA");
 		}
 	}
 

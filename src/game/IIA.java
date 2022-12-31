@@ -13,6 +13,7 @@ public interface IIA {
      * Actualise la matrice de l'IA représentant le plateau
      * @param square la case joué
      * @param indexPlayer le joueur ayant joué
+     * @throws IllegalArgumentException indexPlayer or de la borne ou case invalide
      */
     boolean addMove(String square, int indexPlayer);
 

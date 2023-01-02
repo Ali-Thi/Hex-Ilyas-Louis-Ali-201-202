@@ -25,8 +25,7 @@ Nôtre projet Hex est fonctionnel à 100%, il contient 3 possibilités de jeux:
 
 ## 2. DIAGRAMME D'ARCHITECTURE
 
-Mettre le nouveau
-![class_diagramm](https://user-images.githubusercontent.com/59169832/210149516-2c85a861-e255-4f09-a790-f14e509caa3e.png)
+![hexDiagram](https://user-images.githubusercontent.com/59169832/210251104-f40e6f5c-c37c-4a61-bd58-3df8ef82e6f9.png)
 
 ## 3. LISTE SYNTHETIQUE
 

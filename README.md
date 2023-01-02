@@ -5,23 +5,34 @@
   - JATTIOUI Ilyas (202) 
   - MASSON Louis (202)
   - TALHAOUI Ali (201)
-
-## TABLE DES MATIERES
+  
+## TABLE DES MATIÈRES
 
 1. INTRODUCTION
 2. DIAGRAMME D'ARCHITECTURE
-3. LISTE SYNTHETIQUE
+3. TESTS UNITAIRES
 4. ORGANISATION
-5. REFLEXION
-6. EXPERIENCE GAGNEE
-7. AMELIORATION POSSIBLE
+5. RÉFLEXION
+6. EXPÉRIENCE GAGNÉE
+7. AMÉLIORATIONS POSSIBLES
 
 ## 1. INTRODUCTION
 
-Nôtre projet Hex est fonctionnel à 100%, il contient 3 possibilités de jeux:
+Notre projet Hex permet 3 modes de jeux :
 1) Jouer en joueur contre joueur
 2) Jouer en joueur contre IA
 3) Jouer en IA contre IA
+
+Chaque mode de jeu peut se jouer sur 3 tailles de plateau : 11*11, 14*14 et 19*19.
+La partie se déroule entièrement sur l'invite de commande, avec des entrées claviers testés et vérifiés. Les entrées suivent un schéma prédéfini, une redirection de l'entrée standard sur un fichier peut être faite via le format :
+```
+[0, 1, 2]
+[0, 1, 2]
+{nom du joueur 1}
+{nom du joueur 2}
+{un coup par ligne sous le format [A-S][1-19]}
+```
+La règle du changement de couleur n'est, quant à elle, pas implémentée sur cette version du projet.
 
 ## 2. DIAGRAMME D'ARCHITECTURE
 
@@ -29,26 +40,40 @@ Nôtre projet Hex est fonctionnel à 100%, il contient 3 possibilités de jeux:
 
 ## 3. TESTS UNITAIRES
 
-1) Une classe "TestBoard", qui teste le bon fonctionnement des méthodes de la classe Board avec notamment : <br>
- - Des tests qui vérifient l'affichage (toString()) du plateau, l'attribution d'un pion avec la méthode playAMove() ainsi que la méthode cleanBoard() qui vide le plateau (pour faciliter les tests et facilement recommencer une partie si les joueurs le veulent) <br>
- - Des tests qui vérifient le bon fonctionnement des règles du jeu, caractérisé par les méthodes isWon() et getWinner()
+Chaque classe de test, listée ci-dessous, contient plusieurs fonctions de tests qui représentent chacune une étape de l'implémentation de la classe qui lui correspond.
 
+TestBoard :
+1) Test l'initialisation d'une instance de Board
+2) Test l'ajout de pion sur le plateau, ainsi que de la fonction cleanBoard qui remet le plateau à son état initial
+3) Test les fonctions vérifiant si la partie est gagnée et par qui sur des chemins verticaux ou horizontaux sans fusion de chemin
+4) Test les fonctions vérifiant si la partie est gagnée et par qui sur des chemins en diagonale sans fusion de chemin
+5) Test les fonctions vérifiant si la partie est gagnée et par qui sur des chemins sinueux avec fusion de chemin
+6) Test que les fonctions lèvent des erreurs lorsqu'une erreur survient
+7) Test lorsque 2 joueurs jouent chacun leur tour sur le même plateau
 
-2) Une classe "TestIA", qui teste l'initialisation de l'IA et sa généreration de coups (méthodes isIA() et addMove()).
- 
-3) Une classe "TestGame", qui teste le bon fonctionnement d'une partie : initialisation des joueurs (instance de la classe Game), vérification du gagnant de la partie, gestion des éventuelles erreurs (Mauvaise case ou index du joueur) ainsi qu'un test du bon déroulement d'une partie contre l'IA.
+TestIA (ces tests demandent que l'attribut board de la classe IA soit public) :
+1) Test l'initialisation d'une instance de IA
+2) Test la fonction addMove
+3) Test la fonction generateMove et cleanBoard
+4) Test 2 IA jouant sur le même plateau, ainsi que le levé d'exceptions
 
+TestGame :
+1) Test l'initialisation d'une instance de IA
+2) Test les fonctions isWon et getWinner
+3) Test un humain jouant contre une ia
+4) Test la levé d'exceptions
 
+La classe PathList est indirectement testé via le test de la classe Board. Les classes restantes sont très simples, il est donc inutile de les tester.
 
 ## 4. ORGANISATION
-Nous nous sommes retrouvé avec 2 grandes classes à coder assez complexes et nous nous sommes réparti les tâches de la manière suivante :
+Nous nous sommes retrouvés avec 2 grandes classes à coder assez complexes et nous nous sommes réparti les tâches de la manière suivante :
 Louis s'occupe de la class IA et Square
 Ilyas s'occupe de la class Board et de l'IHM
-Ali s'est occupé de la conception du projet, de l'implémentation de son architecture, ainsi que des classes 'simples'
+Ali s'est occupé de la conception du projet, de l'implémentation de son architecture, ainsi que des classes 'simples'.
 
 Nous avons tous codé chacun de notre côté, mais lorsqu'une personne avait des difficultés, nous l'avons aidé pour permettre au projet d'avancer plus vite et d'être fonctionnel.
 
-## 5.REFLEXION
+## 5.RÉFLEXION
 
 Pour nous, la partie la plus complexe a été de trouver un moyen de savoir si un joueur a gagné.
 
@@ -57,13 +82,18 @@ Créer une ArrayList de LinkedList pour chacun des joueurs. Chacune des LinkedLi
 
 ## 6. EXPÉRIENCE GAGNÉE :
 
-MASSON Louis : pour ma part, j'ai appris à utiliser github et git. J'ai eu du mal au début, mais je sais maintenant comment me mettre à jour et transmettre mes fichiers.
+MASSON Louis : pour ma part, j'ai appris à utiliser Github et Git. J'ai eu du mal au début, mais je sais maintenant comment me mettre à jour et transmettre mes fichiers.
 J'ai aussi pu réfléchir à différentes manières de résoudre les problèmes rencontrés.
 
 JATTIOUI Ilyas : ce projet m'a permis de consolider mes acquis de la première année (respect des principes SOLID et réalisation d'un projet à partir des tests, méthode très utilisée en entreprise), tout en apprenant à rédiger du code lisible que mes collègues peuvent reprendre.
 
 TALHAOUI Ali : je n'ai pas appris de nouvelles choses par ce projet. Cependant, cela a été une occasion de mettre en pratique mes connaissances accumulées  en essayant d'adopter une approche conceptuelle en premier lieu avant de passer à l'implémentation.
 
-## 7. AMÉLIORATION POSSILE :
+## 7. AMÉLIORATIONS POSSIBLES :
 
-Dans notre projet, l'IA joue de manière aléatoire, mais si nous voulons améliorer cela, il faudrait une IA avec un niveau de difficulté (facile, moyen, impossible).
+- Dans notre projet, l'IA joue de manière aléatoire, mais si nous voulons améliorer cela, il faudrait une IA avec un niveau de difficulté (facile, moyen, impossible), et jouant selon une logique.
+- Implémenter la règle du changement de couleur.
+- Ajouter une interface graphique.
+- Permettre à plus de 2 joueurs de jouer.
+- Implémenter une solution de jeux en ligne.
+- Ajouter une sauvegarde des parties jouées.

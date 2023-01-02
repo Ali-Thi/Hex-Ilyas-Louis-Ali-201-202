@@ -14,7 +14,8 @@
 4. ORGANISATION
 5. RÉFLEXION
 6. EXPÉRIENCE GAGNÉE
-7. AMÉLIORATIONS POSSIBLES
+7. MODIFICATION DE RÈGLES
+8. AMÉLIORATIONS POSSIBLES
 
 ## 1. INTRODUCTION
 
@@ -91,7 +92,16 @@ JATTIOUI Ilyas : ce projet m'a permis de consolider mes acquis de la première a
 
 TALHAOUI Ali : je n'ai pas appris de nouvelles choses par ce projet. Cependant, cela a été une occasion de mettre en pratique mes connaissances accumulées  en essayant d'adopter une approche conceptuelle en premier lieu avant de passer à l'implémentation.
 
-## 7. AMÉLIORATIONS POSSIBLES :
+## 7. MODIFICATION DE RÈGLES :
+
+La plupart des modifications de règles peuvent se faire dans l'UI directement. Cependant, par soucis d'efficacité, nous pouvons aussi modifier les classes représentant les objets affectés. 
+- **Nombre de joueurs :** si nous voulons faire que plus de 2 joueurs jouent en même temps, il suffit de passer le nombre exact de joueurs en paramètre au plateau lorsque nous le créons, et passer ensuite l'instance de chaque joueur en paramètre du constructeur de la classe `Game`.
+- **Jouer une case déjà jouée :** si nous voulons que les joueurs puissent jouer une case ayant déjà été joué par l'adversaire, nous devons simplement supprimer le test de case libre dans la classe IA et Board.
+- **Changer les extrémités à relier :** si nous voulons faire en sorte de changer quelles extrémités chacun des joueurs doit relier, nous n'avons qu'à changer l'argument `axe` dans l'appel de la fonction `isPathComplete` au sein de la classe `Board`.
+- **Règle du gâteau :** inverser l'ordre du tableau `players` dans la classe `Game`.
+
+
+## 8. AMÉLIORATIONS POSSIBLES :
 
 - Dans notre projet, l'IA joue de manière aléatoire, mais si nous voulons améliorer cela, il faudrait une IA avec un niveau de difficulté (facile, moyen, impossible), et jouant selon une logique.
 - Implémenter la règle du changement de couleur.

@@ -50,12 +50,14 @@ TestBoard :
 5) Test les fonctions vérifiant si la partie est gagnée et par qui sur des chemins sinueux avec fusion de chemin
 6) Test que les fonctions lèvent des erreurs lorsqu'une erreur survient
 7) Test lorsque 2 joueurs jouent chacun leur tour sur le même plateau
+8) Test la fonction isBoardFull
 
 TestIA (ces tests demandent que l'attribut board de la classe IA soit public) :
 1) Test l'initialisation d'une instance de IA
 2) Test la fonction addMove
 3) Test la fonction generateMove et cleanBoard
 4) Test 2 IA jouant sur le même plateau, ainsi que le levé d'exceptions
+5) Test la fonction isBoardFull
 
 TestGame :
 1) Test l'initialisation d'une instance de IA
@@ -63,7 +65,7 @@ TestGame :
 3) Test un humain jouant contre une ia
 4) Test la levé d'exceptions
 
-La classe PathList est indirectement testé via le test de la classe Board. Les classes restantes sont très simples, il est donc inutile de les tester.
+La classe PathList est indirectement testée via le test de la classe Board. Les classes restantes sont très simples, il est donc inutile de les tester.
 
 ## 4. ORGANISATION
 Nous nous sommes retrouvés avec 2 grandes classes à coder assez complexes et nous nous sommes réparti les tâches de la manière suivante :

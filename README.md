@@ -29,9 +29,9 @@ Nôtre projet Hex est fonctionnel à 100%, il contient 3 possibilités de jeux:
 
 ## 3. TESTS UNITAIRES
 
-1) Une classe "TestBoard", qui teste le bon fonctionnement des méthodes de la classe Board avec notamment :
--> Des tests qui vérifient l'affichage (toString()) du plateau, l'attribution d'un pion avec la méthode playAMove() ainsi que la méthode cleanBoard() qui vide le plateau (pour faciliter les tests et facilement recommencer une partie si les joueurs le veulent)
--> Des tests qui vérifient le bon fonctionnement des règles du jeu, caractérisé par les méthodes isWon() et getWinner()
+1) Une classe "TestBoard", qui teste le bon fonctionnement des méthodes de la classe Board avec notamment : <br>
+ - Des tests qui vérifient l'affichage (toString()) du plateau, l'attribution d'un pion avec la méthode playAMove() ainsi que la méthode cleanBoard() qui vide le plateau (pour faciliter les tests et facilement recommencer une partie si les joueurs le veulent) <br>
+ - Des tests qui vérifient le bon fonctionnement des règles du jeu, caractérisé par les méthodes isWon() et getWinner()
 
 
 2) Une classe "TestIA", qui teste l'initialisation de l'IA et sa généreration de coups (méthodes isIA() et addMove()).
@@ -60,7 +60,7 @@ Créer une ArrayList de LinkedList pour chacun des joueurs. Chacune des LinkedLi
 MASSON Louis : pour ma part, j'ai appris à utiliser github et git. J'ai eu du mal au début, mais je sais maintenant comment me mettre à jour et transmettre mes fichiers.
 J'ai aussi pu réfléchir à différentes manières de résoudre les problèmes rencontrés.
 
-JATTIOUI Ilyas :
+JATTIOUI Ilyas : ce projet m'a permis de consolider mes acquis de la première année (respect des principes SOLID et réalisation d'un projet à partir des tests, méthode très utilisée en entreprise), tout en apprenant à rédiger du code lisible que mes collègues peuvent reprendre.
 
 TALHAOUI Ali : je n'ai pas appris de nouvelles choses par ce projet. Cependant, cela a été une occasion de mettre en pratique mes connaissances accumulées  en essayant d'adopter une approche conceptuelle en premier lieu avant de passer à l'implémentation.
 

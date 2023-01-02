@@ -14,7 +14,8 @@
 4. ORGANISATION
 5. RÉFLEXION
 6. EXPÉRIENCE GAGNÉE
-7. AMÉLIORATIONS POSSIBLES
+7. MODIFICATION DE RÈGLES
+8. AMÉLIORATIONS POSSIBLES
 
 ## 1. INTRODUCTION
 
@@ -50,12 +51,14 @@ TestBoard :
 5) Test les fonctions vérifiant si la partie est gagnée et par qui sur des chemins sinueux avec fusion de chemin
 6) Test que les fonctions lèvent des erreurs lorsqu'une erreur survient
 7) Test lorsque 2 joueurs jouent chacun leur tour sur le même plateau
+8) Test la fonction isBoardFull
 
 TestIA (ces tests demandent que l'attribut board de la classe IA soit public) :
 1) Test l'initialisation d'une instance de IA
 2) Test la fonction addMove
 3) Test la fonction generateMove et cleanBoard
 4) Test 2 IA jouant sur le même plateau, ainsi que le levé d'exceptions
+5) Test la fonction isBoardFull
 
 TestGame :
 1) Test l'initialisation d'une instance de IA
@@ -63,7 +66,7 @@ TestGame :
 3) Test un humain jouant contre une ia
 4) Test la levé d'exceptions
 
-La classe PathList est indirectement testé via le test de la classe Board. Les classes restantes sont très simples, il est donc inutile de les tester.
+La classe PathList est indirectement testée via le test de la classe Board. Les classes restantes sont très simples, il est donc inutile de les tester.
 
 ## 4. ORGANISATION
 Nous nous sommes retrouvés avec 2 grandes classes à coder assez complexes et nous nous sommes réparti les tâches de la manière suivante :
@@ -89,7 +92,16 @@ JATTIOUI Ilyas : ce projet m'a permis de consolider mes acquis de la première a
 
 TALHAOUI Ali : je n'ai pas appris de nouvelles choses par ce projet. Cependant, cela a été une occasion de mettre en pratique mes connaissances accumulées  en essayant d'adopter une approche conceptuelle en premier lieu avant de passer à l'implémentation.
 
-## 7. AMÉLIORATIONS POSSIBLES :
+## 7. MODIFICATION DE RÈGLES :
+
+La plupart des modifications de règles peuvent se faire dans l'UI directement. Cependant, par soucis d'efficacité, nous pouvons aussi modifier les classes représentant les objets affectés. 
+- **Nombre de joueurs :** si nous voulons faire que plus de 2 joueurs jouent en même temps, il suffit de passer le nombre exact de joueurs en paramètre au plateau lorsque nous le créons, et passer ensuite l'instance de chaque joueur en paramètre du constructeur de la classe `Game`.
+- **Jouer une case déjà jouée :** si nous voulons que les joueurs puissent jouer une case ayant déjà été joué par l'adversaire, nous devons simplement supprimer le test de case libre dans la classe IA et Board.
+- **Changer les extrémités à relier :** si nous voulons faire en sorte de changer quelles extrémités chacun des joueurs doit relier, nous n'avons qu'à changer l'argument `axe` dans l'appel de la fonction `isPathComplete` au sein de la classe `Board`.
+- **Règle du gâteau :** inverser l'ordre du tableau `players` dans la classe `Game`.
+
+
+## 8. AMÉLIORATIONS POSSIBLES :
 
 - Dans notre projet, l'IA joue de manière aléatoire, mais si nous voulons améliorer cela, il faudrait une IA avec un niveau de difficulté (facile, moyen, impossible), et jouant selon une logique.
 - Implémenter la règle du changement de couleur.

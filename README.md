@@ -6,22 +6,29 @@
   - MASSON Louis (202)
   - TALHAOUI Ali (201)
 
-# TABLE DES MATIERES
+## TABLE DES MATIERES
 
 1. INTRODUCTION
 2. DIAGRAMME D'ARCHITECTURE
 3. LISTE SYNTHETIQUE
 
-# INTRODUCTION
+## 1. INTRODUCTION
 
+Nôtre projet Hex est fonctionnel à 100%, il contient 3 possibilités de jeux:
+1) Jouer en joueur contre joueur
+2) Jouer en joueur contre IA
+3) Jouer en IA contre IA
 
+## 2. DIAGRAMME D'ARCHITECTURE
 
-## Diagramme de classe
-
-Tout d'abord, nous avons commencé à penser au diagramme de classes :
+Mettre le nouveau
 ![class_diagramm](https://user-images.githubusercontent.com/59169832/210149516-2c85a861-e255-4f09-a790-f14e509caa3e.png)
 
-## ORGANISATION
+## 3. LISTE SYNTHETIQUE
+
+
+
+## 3. ORGANISATION
 Nous nous sommes retrouvé avec 2 grandes classes à coder assez complexes et nous nous sommes réparti les tâches de la manière suivante :
 Louis s'occupe de la class IA et Square
 Ilyas s'occupe de la class Board et de l'IHM

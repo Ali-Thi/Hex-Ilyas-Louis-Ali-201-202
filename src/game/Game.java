@@ -4,9 +4,9 @@ public class Game implements IGame {
 	private final IBoard board;
 	private final IPlayer[] players;
 
-	public Game(IBoard board, IPlayer player1, IPlayer player2){
+	public Game(IBoard board, IPlayer[] players){
 		this.board = board;
-		this.players = new IPlayer[]{player1, player2};
+		this.players = players;
 	}
 
 	/**

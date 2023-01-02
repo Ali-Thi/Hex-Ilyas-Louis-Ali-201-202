@@ -2,6 +2,7 @@ package test;
 
 import game.IGame;
 import game.Game;
+import game.IPlayer;
 import game.utilities.Board;
 import game.utilities.HPlayer;
 import game.utilities.IA;
@@ -19,7 +20,7 @@ public class TestGame {
      */
     @Test
     public void test1(){
-        IGame game = new Game(new Board(side, nbPlayer), new HPlayer("John"), new HPlayer("Alex"));
+        IGame game = new Game(new Board(side, nbPlayer), new IPlayer[]{new HPlayer("John"), new HPlayer("Alex")});
         assertEquals("  A B C D E F G H\n" +
                 "1 . . . . . . . .\n" +
                 "2  . . . . . . . .\n" +
@@ -37,7 +38,7 @@ public class TestGame {
     @Test
     public void test2(){
         Board board = new Board(side, nbPlayer);
-        IGame game = new Game(board, new HPlayer("John"), new HPlayer("Alex"));
+        IGame game = new Game(board, new IPlayer[]{new HPlayer("John"), new HPlayer("Alex")});
 
         for(int i =1;i<=side;i++) {
             board.playAMove('H'+String.valueOf(i), 1);
@@ -97,7 +98,7 @@ public class TestGame {
     @Test
     public void test3(){
         Board board = new Board(side, nbPlayer);
-        IGame game = new Game(board, new HPlayer("John"), new IA(side));
+        IGame game = new Game(board, new IPlayer[]{new HPlayer("John"), new IA(side)});
         game.playAMove("C3", 1);
         try {
             for (int i = 0; i < side * side - 1; ++i) {
@@ -119,7 +120,7 @@ public class TestGame {
     @Test
     public void test4(){
         Board board = new Board(side, nbPlayer);
-        IGame game = new Game(board, new HPlayer("John"), new IA(side));
+        IGame game = new Game(board, new IPlayer[]{new HPlayer("John"), new IA(side)});
 
         assertEquals("", game.getWinner());
         assertTrue(game.playAMove("C1", 1));
@@ -157,7 +158,7 @@ public class TestGame {
     @Test
     public void test5(){
         Board board = new Board(side, nbPlayer);
-        IGame game = new Game(board, new HPlayer("John"), new HPlayer("Patrick"));
+        IGame game = new Game(board, new IPlayer[]{new HPlayer("John"), new HPlayer("Patrick")});
 
         assertFalse(game.isBoardFull());
         for (char c : "ABCDEFGH".toCharArray()) {

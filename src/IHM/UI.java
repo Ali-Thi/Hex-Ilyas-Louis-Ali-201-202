@@ -133,7 +133,7 @@ public class UI {
 	}
 
 	private static void initParam(int length, IPlayer p1, IPlayer p2){
-		game = new Game(new Board(length, 2), p1, p2);
+		game = new Game(new Board(length, 2), new IPlayer[]{p1, p2});
 		playersName = new String[]{p1.getName(), p2.getName()};
 		isWon = false;
 		isBoardFull = false;

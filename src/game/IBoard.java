@@ -27,4 +27,10 @@ public interface IBoard {
 	 * @return l'index du joueur
 	 */
 	int getWinner();
+
+	/**
+	 * Test si le plateau est plein
+	 * @return true si le tableau est plein, false sinon
+	 */
+	boolean isBoardFull();
 }

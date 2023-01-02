@@ -15,7 +15,7 @@ public class TestGame {
     private final int nbPlayer = 2;
 
     /**
-     * test the initialization of a new instance of Game
+     * Test l'initialisation d'une instance de IA
      */
     @Test
     public void test1(){
@@ -32,7 +32,7 @@ public class TestGame {
     }
 
     /**
-     * test function isWon and getWinner
+     * Test les fonctions isWon et getWinner
      */
     @Test
     public void test2(){
@@ -92,15 +92,21 @@ public class TestGame {
     }
 
     /**
-     * test humain vs ia
+     * Test un humain jouant contre une ia
      */
     @Test
     public void test3(){
         Board board = new Board(side, nbPlayer);
         IGame game = new Game(board, new HPlayer("John"), new IA(side));
         game.playAMove("C3", 1);
-        for(int i = 0 ; i < side*side-1 ; ++i){
-            game.makeIAPlay(2);
+        try {
+            for (int i = 0; i < side * side - 1; ++i) {
+                game.makeIAPlay(2);
+            }
+        } catch(RuntimeException e){
+            if(e.getMessage() != "Partie finie"){
+                fail(e.getMessage());
+            }
         }
 
         assertTrue(game.isWon());
@@ -108,7 +114,7 @@ public class TestGame {
     }
 
     /**
-     * test erreurs
+     * Test la levée d'exceptions
      */
     @Test
     public void test4(){
@@ -144,4 +150,36 @@ public class TestGame {
         }
 
     }
+
+    /**
+     * Test la fonction isBoardFull
+     */
+    @Test
+    public void test5(){
+        Board board = new Board(side, nbPlayer);
+        IGame game = new Game(board, new HPlayer("John"), new HPlayer("Patrick"));
+
+        assertFalse(game.isBoardFull());
+        for (char c : "ABCDEFGH".toCharArray()) {
+            for (char n : "12345678".toCharArray()) {
+                if(n == '8'){
+                    game.playAMove(c + String.valueOf(n), 2);
+                } else {
+                    game.playAMove(c + String.valueOf(n), 1);
+                }
+            }
+        }
+        assertEquals("  A B C D E F G H\n" +
+                "1 1 1 1 1 1 1 1 1\n" +
+                "2  1 1 1 1 1 1 1 1\n" +
+                "3   1 1 1 1 1 1 1 1\n" +
+                "4    1 1 1 1 1 1 1 1\n" +
+                "5     1 1 1 1 1 1 1 1\n" +
+                "6      1 1 1 1 1 1 1 1\n" +
+                "7       1 1 1 1 1 1 1 1\n" +
+                "8        2 2 2 2 2 2 2 2\n", game.toString());
+
+        assertTrue(game.isBoardFull());
+    }
+
 }

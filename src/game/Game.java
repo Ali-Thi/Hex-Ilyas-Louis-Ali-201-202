@@ -15,6 +15,8 @@ public class Game implements IGame {
 	 * @param indexPlayer index du joueur qui a joué le coup
 	 * @return true si le coup a bien été enregistré, sinon false
 	 * @throws IllegalArgumentException indexPlayer or de la borne ou case invalide
+	 * @throws RuntimeException si la partie est déjà finie
+	 *
 	 */
 	@Override
 	public boolean playAMove(String square, int indexPlayer) {
@@ -55,6 +57,15 @@ public class Game implements IGame {
 		if(isWon())
 			return players[board.getWinner()-1].getName();
 		return "";
+	}
+
+	/**
+	 * Test si le plateau est plein
+	 * @return true si le tableau est plein, false sinon
+	 */
+	@Override
+	public boolean isBoardFull(){
+		return this.board.isBoardFull();
 	}
 
 	/**

@@ -2,6 +2,9 @@ package game.utilities;
 
 import game.IPlayer;
 
+/**
+ * Classe de joueur humain
+ */
 public class HPlayer implements IPlayer {
     private String name;
     public HPlayer(String name){

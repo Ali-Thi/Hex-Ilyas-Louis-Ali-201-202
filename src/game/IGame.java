@@ -7,6 +7,7 @@ public interface IGame {
 	 * @param indexPlayer index du joueur qui a joué le coup
 	 * @return true si le coup a bien été enregistré, sinon false
 	 * @throws IllegalArgumentException indexPlayer or de la borne ou case invalide
+	 * @throws RuntimeException si la partie est déjà finie
 	 */
 	boolean playAMove(String square, int indexPlayer);
 
@@ -26,6 +27,12 @@ public interface IGame {
 	 * @return l'index du joueur
 	 */
 	String getWinner();
+
+	/**
+	 * Test si le plateau est plein
+	 * @return true si le tableau est plein, false sinon
+	 */
+	boolean isBoardFull();
 
 	/**
      * Fait jouer un coup par une IA

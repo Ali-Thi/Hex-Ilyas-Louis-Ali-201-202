@@ -3,6 +3,9 @@ package game.utilities;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * Classe de gestion des chemins d'un joueur
+ */
 public class PathList {
 
     /**
@@ -27,7 +30,7 @@ public class PathList {
             return o instanceof Coord && ((Coord) o).x == x && ((Coord) o).y == y;
         }
     }
-    public ArrayList<LinkedList<Coord>> paths; //les chemins
+    private ArrayList<LinkedList<Coord>> paths; //les chemins
 
     public PathList(){
         paths = new ArrayList<>();

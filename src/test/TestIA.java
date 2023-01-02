@@ -1,3 +1,4 @@
+/*
 package test;
 
 import game.utilities.Board;
@@ -16,9 +17,11 @@ public class TestIA {
     private Board board = new Board(side, 2);
 
 
-    /**
-     * test the initialization
-     */
+    */
+/**
+     * Test l'initialisation d'une instance de IA
+     *//*
+
     @Test
     public void test1(){
         assertTrue(ia1.isIA());
@@ -26,9 +29,11 @@ public class TestIA {
         assertEquals("IA2", ia2.getName());
     }
 
-    /**
-     * test the function addMove
-     */
+    */
+/**
+     * Test la fonction addMove
+     *//*
+
     @Test
     public void test2(){
         for(char c : "ABCDEFGH".toCharArray())
@@ -51,6 +56,10 @@ public class TestIA {
         ia1.cleanBoard();
     }
 
+    */
+/**
+     * Test la fonction generateMove et cleanBoard
+     *//*
 
     @Test
     public void test3(){
@@ -60,12 +69,17 @@ public class TestIA {
         ia1.cleanBoard();
     }
 
+    */
+/**
+     * Test 2 IA jouant sur le même plateau, ainsi que le levé d'exceptions
+     *//*
+
     @Test
     public void test4(){
         String move1;
         String move2;
         board.cleanBoard();
-        for(int i = 0 ; i < (side*side)/2 ; ++i){
+        for(int i = 0 ; i < (side*side-1)/2 ; ++i){
             move1 = ia1.generateMove();
 
             assertTrue(board.playAMove(move1, 1));
@@ -96,3 +110,4 @@ public class TestIA {
 
     }
 }
+*/

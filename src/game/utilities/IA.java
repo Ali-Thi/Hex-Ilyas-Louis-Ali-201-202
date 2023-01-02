@@ -3,9 +3,11 @@ package game.utilities;
 import game.IIA;
 import game.IPlayer;
 
+import java.util.Arrays;
+
 public class IA implements IIA, IPlayer {
     private static int sequence = 1;
-    public final int[][] board;
+    private final int[][] board;
     private int number;
 
     public IA(int side){

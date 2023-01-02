@@ -12,7 +12,7 @@ public class TestBoard {
     private IBoard board = new Board(side, nbPlayer);
 
     /**
-     * test the initialization of a new instance of Board
+     * Test l'initialisation d'une instance de Board
      */
     @Test
     public void test1() {
@@ -60,7 +60,7 @@ public class TestBoard {
     }
 
     /**
-     * Test the addition of new pawn on the board, and the function cleanBoard
+     * Test l'ajout de pion sur le plateau, ainsi que de la fonction cleanBoard qui remet le plateau à son état initial
      */
     @Test
     public void test2() {
@@ -108,7 +108,7 @@ public class TestBoard {
 
 
     /**
-     * Test the function isWon and getWinner for straight path
+     * Test les fonctions vérifiant si la partie est gagnée et par qui sur des chemins verticaux ou horizontaux sans fusion de chemin
      */
     @Test
     public void test3() {
@@ -162,7 +162,7 @@ public class TestBoard {
     }
 
     /**
-     * Test the function isWon and getWinner for diagonal path
+     * Test les fonctions vérifiant si la partie est gagnée et par qui sur des chemins en diagonale sans fusion de chemin
      */
     @Test
     public void test4() {
@@ -217,7 +217,7 @@ public class TestBoard {
     }
 
     /**
-     * Test the function isWon and getWinner for curved path
+     * Test les fonctions vérifiant si la partie est gagnée et par qui sur des chemins sinueux avec fusion de chemin
      */
     @Test
     public void test5() {
@@ -294,7 +294,7 @@ public class TestBoard {
     }
 
     /**
-     * Test that there's no winner when isWon() returns false and ???
+     * Test que les fonctions lèvent des erreurs lorsqu'une erreur survient
      */
     @Test
     public void test6() {
@@ -333,7 +333,9 @@ public class TestBoard {
         }
     }
 
-
+    /**
+     * Test lorsque 2 joueurs jouent chacun leur tour sur le même plateau
+     */
     @Test
     public void test7() {
         board.cleanBoard();
@@ -374,4 +376,34 @@ public class TestBoard {
             assertEquals(1, board.getWinner());
         }
     }
+
+    /**
+     * Test la fonction isBoardFull
+     */
+    @Test
+    public void test8(){
+
+        assertFalse(board.isBoardFull());
+        for (char c : "ABCDEFGH".toCharArray()) {
+            for (char n : "12345678".toCharArray()) {
+                if(n == '8'){
+                    board.playAMove(c + String.valueOf(n), 2);
+                } else {
+                    board.playAMove(c + String.valueOf(n), 1);
+                }
+            }
+        }
+        assertEquals("  A B C D E F G H\n" +
+                "1 1 1 1 1 1 1 1 1\n" +
+                "2  1 1 1 1 1 1 1 1\n" +
+                "3   1 1 1 1 1 1 1 1\n" +
+                "4    1 1 1 1 1 1 1 1\n" +
+                "5     1 1 1 1 1 1 1 1\n" +
+                "6      1 1 1 1 1 1 1 1\n" +
+                "7       1 1 1 1 1 1 1 1\n" +
+                "8        2 2 2 2 2 2 2 2\n", board.toString());
+
+        assertTrue(board.isBoardFull());
+    }
+
 }

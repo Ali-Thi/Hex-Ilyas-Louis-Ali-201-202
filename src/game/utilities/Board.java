@@ -1,5 +1,6 @@
 package game.utilities;
 
+
 import java.util.Arrays;
 
 public class Board implements game.IBoard {
@@ -145,6 +146,21 @@ public class Board implements game.IBoard {
         return this.winnerIndex;
     }
 
+    /**
+     * Test si le plateau est plein
+     * @return true si le tableau est plein, false sinon
+     */
+    @Override
+    public boolean isBoardFull(){
+        for(Square[] listSquare : board){
+            for(Square s : listSquare){
+                if(s.getValue() == Square.PossbileValue.Vide){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * Retourne une chaine représentant l'instance courante

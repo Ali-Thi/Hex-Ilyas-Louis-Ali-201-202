@@ -7,6 +7,7 @@ public interface IBoard {
 	 * @param indexPlayer index du joueur qui a joué le coup
 	 * @return true si le coup a bien été enregistré, sinon false
 	 * @throws IllegalArgumentException indexPlayer or de la borne ou case invalide
+	 * @throws RuntimeException si la partie est déjà finie
 	 */
 	boolean playAMove(String square, int indexPlayer);
 

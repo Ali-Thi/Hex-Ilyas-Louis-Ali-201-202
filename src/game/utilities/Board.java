@@ -1,5 +1,7 @@
 package game.utilities;
 
+import java.util.Arrays;
+
 public class Board implements game.IBoard {
     private final Square[][] board; //plateau
     private final PathList[] paths; //tableau des chemins, chaque element representant un joueur dans l'ordre de jeux
@@ -35,6 +37,7 @@ public class Board implements game.IBoard {
      * @param indexPlayer index du joueur qui a joué le coup
      * @return true si le coup a bien été enregistré, sinon false
      * @throws IllegalArgumentException indexPlayer or de la borne ou case invalide
+     * @throws RuntimeException si la partie est déjà finie
      */
     @Override
     public boolean playAMove(String square, int indexPlayer) {
@@ -46,6 +49,9 @@ public class Board implements game.IBoard {
         if (indexPlayer > nbPlayer || indexPlayer <= 0) {
             throw new IllegalArgumentException("L'index du joueur est en dehors des limites.");
         }
+        if(isWon()){
+            throw new RuntimeException("Partie finie");
+        }
         try{
             Integer.parseInt(square.substring(1));
         } catch(NumberFormatException e){
@@ -56,6 +62,7 @@ public class Board implements game.IBoard {
         int y = square.charAt(0) - 'A';
         //conversion du String numéro en int
         int x = Integer.parseInt(square.substring(1)) - 1;
+
         if (board[x][y].getValue() == Square.PossbileValue.Vide) {
             this.board[x][y].setValue(indexPlayer);
 

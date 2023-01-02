@@ -27,7 +27,7 @@ public class PathList {
             return o instanceof Coord && ((Coord) o).x == x && ((Coord) o).y == y;
         }
     }
-    private final ArrayList<LinkedList<Coord>> paths; //les chemins
+    public ArrayList<LinkedList<Coord>> paths; //les chemins
 
     public PathList(){
         paths = new ArrayList<>();
@@ -107,6 +107,8 @@ public class PathList {
         boolean coordMinFind = false;
         boolean coordMaxFind = false;
         for(LinkedList<Coord> list : paths){
+            coordMinFind = false;
+            coordMaxFind = false;
             for(Coord coords : list){
                 if(axe == 'x') {
                     if (coords.x == coordMin) coordMinFind = true;

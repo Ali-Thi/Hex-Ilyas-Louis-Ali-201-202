@@ -1,4 +1,4 @@
-package game;
+package hex;
 
 public interface IBoard {
 	/**
@@ -9,13 +9,26 @@ public interface IBoard {
 	 * @throws IllegalArgumentException indexPlayer or de la borne ou case invalide
 	 * @throws RuntimeException si la partie est déjà finie
 	 */
-	boolean playAMove(String square, int indexPlayer);
+	boolean placeAPawn(String square, int indexPlayer);
 
 	/**
 	 * Test si un joueur a gagné
 	 * @return true si un joueur a gagné, sinon false
 	 */
 	boolean isWon();
+
+	/**
+	 * Retourne la largeur du plateau
+	 * @return la largeur
+	 */
+	int getSide();
+
+	/**
+	 * Test si la case est vide
+	 * @param square la case sous la forme [A-Z||a-z][1-MAX_INT]
+	 * @return true si elle est vide, false sinon
+	 */
+	boolean isSquareEmpty(String square);
 
 	/**
 	 * Remet le plateau à zéro
@@ -27,10 +40,4 @@ public interface IBoard {
 	 * @return l'index du joueur
 	 */
 	int getWinner();
-
-	/**
-	 * Test si le plateau est plein
-	 * @return true si le tableau est plein, false sinon
-	 */
-	boolean isBoardFull();
 }

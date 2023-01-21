@@ -1,4 +1,4 @@
-package game.utilities;
+package hex.board;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -30,7 +30,7 @@ public class PathList {
             return o instanceof Coord && ((Coord) o).x == x && ((Coord) o).y == y;
         }
     }
-    private ArrayList<LinkedList<Coord>> paths; //les chemins
+    private final ArrayList<LinkedList<Coord>> paths; //les chemins
 
     public PathList(){
         paths = new ArrayList<>();
@@ -113,6 +113,9 @@ public class PathList {
             coordMinFind = false;
             coordMaxFind = false;
             for(Coord coords : list){
+                if(coordMinFind && coordMaxFind){
+                    return coordMaxFind && coordMinFind;
+                }
                 if(axe == 'x') {
                     if (coords.x == coordMin) coordMinFind = true;
                     else if (coords.x == coordMax) coordMaxFind = true;

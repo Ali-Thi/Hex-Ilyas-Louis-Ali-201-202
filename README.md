@@ -24,7 +24,7 @@ Notre projet Hex permet 3 modes de jeux :
 2) Jouer en joueur contre IA
 3) Jouer en IA contre IA
 
-Chaque mode de jeu peut se jouer sur 3 tailles de plateau : 11*11, 14*14 et 19*19.
+La taille du plateau est totalement personnalisable par l'utilisateurs. Toutefois, il est conseillé de choisir une taille parmis les 3 suivants : 11\*11, 14\*14 et 19\*19.
 La partie se déroule entièrement sur l'invite de commande, avec des entrées claviers testés et vérifiés. Les entrées suivent un schéma prédéfini, une redirection de l'entrée standard sur un fichier peut être faite via le format :
 ```
 [0, 1, 2]

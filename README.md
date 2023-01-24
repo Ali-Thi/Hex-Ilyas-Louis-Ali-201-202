@@ -6,6 +6,8 @@
   - MASSON Louis (202)
   - TALHAOUI Ali (201)
   
+  MZ: Note 12/20 au groupe. La note de l'exo du DST ne sera prise en compte que si elle est supérieure donc cette note ne peut pas baisser.
+  
 ## TABLE DES MATIÈRES
 
 1. INTRODUCTION

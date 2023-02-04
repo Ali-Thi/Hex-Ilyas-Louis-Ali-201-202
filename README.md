@@ -38,8 +38,12 @@ La partie se déroule entièrement sur l'invite de commande, avec des entrées c
 La règle du changement de couleur n'est, quant à elle, pas implémentée sur cette version du projet.
 
 ## 2. DIAGRAMME D'ARCHITECTURE
-
-![hexDiagram](https://user-images.githubusercontent.com/59169832/210251104-f40e6f5c-c37c-4a61-bd58-3df8ef82e6f9.png)
+### Sans package apparent
+![ClassDiagrammWithoutPackage.png](img%2Fsrc.png)
+### Avec package apparent
+![ClassDiagrammWithPackage.png](img%2FIHM.png)
+<img src="../img/src.png" width=50% alt="diagramme de classe sans package">
+<img src="../img/IHM.png" width=50% alt="diagramme de classe avec package">
 
 ## 3. TESTS UNITAIRES
 

@@ -1,7 +1,5 @@
 # PROJET HEX
 
-Novembre 2022 - Janvier 2023
-
 ## Membres
 
   - JATTIOUI Ilyas (202) 

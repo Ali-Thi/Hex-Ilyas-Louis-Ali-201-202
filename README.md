@@ -1,6 +1,6 @@
 # PROJET HEX
 
-Novembre - Décembre 2022
+Novembre 2022 - Janvier 2023
 
 ## Membres
 
